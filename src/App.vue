@@ -1,6 +1,10 @@
 <template>
   <v-app class="v-app-wrapper">
     <div class="landing-page">
+      <video autoplay loop muted playsinline class="background-video">
+        <source src="/mateus carro.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay"></div>
       <div class="particles"></div>
       <div class="circuit-lines"></div>
 
@@ -117,6 +121,27 @@
   padding: 0;
 }
 
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 50, 150, 0.65);
+  z-index: 1;
+  pointer-events: none;
+}
+
 .particles {
   position: fixed;
   width: 100%;
@@ -135,6 +160,7 @@
   background-position: 0% 0%;
   animation: particlesFloat 20s ease-in-out infinite;
   opacity: 0.3;
+  z-index: 2;
 }
 
 .circuit-lines {
@@ -149,6 +175,7 @@
     linear-gradient(0deg, transparent 98%, rgba(0, 212, 255, 0.1) 100%);
   background-size: 50px 50px;
   opacity: 0.3;
+  z-index: 2;
 }
 
 @keyframes particlesFloat {
@@ -163,8 +190,9 @@
   justify-content: center;
   position: relative;
   padding: 80px 20px;
-  background: linear-gradient(180deg, rgba(10, 10, 31, 0.8) 0%, rgba(0, 50, 100, 0.3) 100%);
+  background: linear-gradient(180deg, rgba(10, 10, 31, 0.4) 0%, rgba(0, 50, 100, 0.2) 100%);
   border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+  z-index: 3;
 }
 
 .hero-glow {
@@ -294,7 +322,7 @@
 .info-section {
   padding: 80px 20px;
   position: relative;
-  z-index: 1;
+  z-index: 3;
   background: linear-gradient(180deg, rgba(0, 50, 100, 0.3) 0%, rgba(30, 0, 60, 0.4) 100%);
   border-bottom: 2px solid rgba(138, 43, 226, 0.3);
 }
@@ -385,7 +413,7 @@
 .gifts-section {
   padding: 80px 20px;
   position: relative;
-  z-index: 1;
+  z-index: 3;
   background: linear-gradient(180deg, rgba(30, 0, 60, 0.4) 0%, rgba(0, 30, 30, 0.5) 100%);
   border-bottom: 2px solid rgba(0, 255, 200, 0.3);
 }
@@ -463,7 +491,7 @@
   padding: 60px 20px;
   text-align: center;
   position: relative;
-  z-index: 1;
+  z-index: 3;
   background: linear-gradient(180deg, rgba(0, 30, 30, 0.5) 0%, rgba(0, 0, 0, 0.9) 100%);
 }
 
