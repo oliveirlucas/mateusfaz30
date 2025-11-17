@@ -1,7 +1,7 @@
 <template>
   <v-app class="v-app-wrapper">
     <div class="landing-page">
-      <video autoplay loop muted playsinline class="background-video">
+      <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="background-video">
         <source src="/mateus carro.mp4" type="video/mp4">
       </video>
       <div class="video-overlay"></div>
@@ -113,11 +113,27 @@ import { onMounted } from 'vue';
 onMounted(() => {
   const video = document.querySelector('.background-video') as HTMLVideoElement;
   if (video) {
-    video.play().catch(() => {
-      document.addEventListener('touchstart', () => {
-        video.play();
-      }, { once: true });
-    });
+    video.muted = true;
+    video.playsInline = true;
+
+    const attemptPlay = () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          ['click', 'touchstart', 'scroll'].forEach(event => {
+            document.addEventListener(event, () => {
+              video.play();
+            }, { once: true });
+          });
+        });
+      }
+    };
+
+    if (video.readyState >= 3) {
+      attemptPlay();
+    } else {
+      video.addEventListener('canplay', attemptPlay, { once: true });
+    }
   }
 });
 </script>
