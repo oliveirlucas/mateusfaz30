@@ -108,6 +108,18 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue';
+
+onMounted(() => {
+  const video = document.querySelector('.background-video') as HTMLVideoElement;
+  if (video) {
+    video.play().catch(() => {
+      document.addEventListener('touchstart', () => {
+        video.play();
+      }, { once: true });
+    });
+  }
+});
 </script>
 
 <style scoped>
