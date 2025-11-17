@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node server.js"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
-    "express": "^4.17.2",
+    "express": "^4.21.2",
     "vue": "^3.4.38",
     "vuetify": "^3.10.11"
   },
