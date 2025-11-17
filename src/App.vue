@@ -1,34 +1,35 @@
 <template>
   <v-app class="v-app-wrapper">
     <div class="landing-page">
-      <video autoplay loop muted playsinline class="background-video">
-        <source src="/mateus carro.mp4" type="video/mp4">
-      </video>
-      <div class="video-overlay"></div>
       <div class="particles"></div>
       <div class="circuit-lines"></div>
 
-      <section class="hero-section">
-        <div class="hero-glow"></div>
-        <div class="fireworks-container">
-          <div class="firework" v-for="n in 8" :key="n" :style="{left: (n * 12) + '%', animationDelay: (n * 0.5) + 's'}"></div>
-        </div>
-        <v-container>
-          <div class="hero-content">
-            <div class="logo-container">
-              <img src="/foto perfil-Photoroom copy.png" alt="Mateus 3.0 Turbo" class="hero-logo" />
-            </div>
-            <p class="hero-subtitle">Vem comemorar meus 30 anos comigo!</p>
-            <div class="hero-decorations">
-              <v-icon class="deco-icon">mdi-lightning-bolt</v-icon>
-              <v-icon class="deco-icon">mdi-flash</v-icon>
-              <v-icon class="deco-icon">mdi-lightning-bolt</v-icon>
-            </div>
+      <div class="video-section">
+        <video autoplay loop muted playsinline class="background-video">
+          <source src="/mateus carro.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        <section class="hero-section">
+          <div class="hero-glow"></div>
+          <div class="fireworks-container">
+            <div class="firework" v-for="n in 8" :key="n" :style="{left: (n * 12) + '%', animationDelay: (n * 0.5) + 's'}"></div>
           </div>
-        </v-container>
-      </section>
+          <v-container>
+            <div class="hero-content">
+              <div class="logo-container">
+                <img src="/foto perfil-Photoroom copy.png" alt="Mateus 3.0 Turbo" class="hero-logo" />
+              </div>
+              <p class="hero-subtitle">Vem comemorar meus 30 anos comigo!</p>
+              <div class="hero-decorations">
+                <v-icon class="deco-icon">mdi-lightning-bolt</v-icon>
+                <v-icon class="deco-icon">mdi-flash</v-icon>
+                <v-icon class="deco-icon">mdi-lightning-bolt</v-icon>
+              </div>
+            </div>
+          </v-container>
+        </section>
 
-      <section class="info-section">
+        <section class="info-section">
         <v-container>
           <div class="info-card neon-card">
             <div class="card-glow"></div>
@@ -69,7 +70,8 @@
             ></iframe>
           </div>
         </v-container>
-      </section>
+        </section>
+      </div>
 
       <section class="gifts-section">
         <v-container>
@@ -121,18 +123,26 @@
   padding: 0;
 }
 
+.video-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
 .background-video {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   z-index: 0;
+  filter: brightness(0.9) contrast(1.1) saturate(1.2);
 }
 
 .video-overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
