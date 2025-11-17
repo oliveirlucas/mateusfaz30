@@ -28,8 +28,9 @@
             </div>
           </v-container>
         </section>
+      </div>
 
-        <section class="info-section">
+      <section class="info-section">
         <v-container>
           <div class="info-card neon-card">
             <div class="card-glow"></div>
@@ -70,8 +71,7 @@
             ></iframe>
           </div>
         </v-container>
-        </section>
-      </div>
+      </section>
 
       <section class="gifts-section">
         <v-container>
