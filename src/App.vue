@@ -1,42 +1,32 @@
 <template>
   <v-app class="v-app-wrapper">
     <div class="landing-page">
-      <audio ref="backgroundMusic" loop class="background-audio">
-        <source src="/bandolero.mp3" type="audio/mpeg">
-      </audio>
-      <div class="music-control" @click="toggleMusic">
-        <v-icon size="32" :color="isMusicPlaying ? '#00d4ff' : '#ffffff'">
-          {{ isMusicPlaying ? 'mdi-volume-high' : 'mdi-volume-off' }}
-        </v-icon>
-      </div>
+      <video autoplay loop muted playsinline class="background-video">
+        <source src="/mateus carro.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay"></div>
       <div class="particles"></div>
       <div class="circuit-lines"></div>
 
-      <div class="video-section">
-        <video autoplay loop muted playsinline class="background-video">
-          <source src="/mateus carro.mp4" type="video/mp4">
-        </video>
-        <div class="video-overlay"></div>
-        <section class="hero-section">
-          <div class="hero-glow"></div>
-          <div class="fireworks-container">
-            <div class="firework" v-for="n in 8" :key="n" :style="{left: (n * 12) + '%', animationDelay: (n * 0.5) + 's'}"></div>
-          </div>
-          <v-container>
-            <div class="hero-content">
-              <div class="logo-container">
-                <img src="/foto perfil-Photoroom copy.png" alt="Mateus 3.0 Turbo" class="hero-logo" />
-              </div>
-              <p class="hero-subtitle">Vem comemorar meus 30 anos comigo!</p>
-              <div class="hero-decorations">
-                <v-icon class="deco-icon">mdi-lightning-bolt</v-icon>
-                <v-icon class="deco-icon">mdi-flash</v-icon>
-                <v-icon class="deco-icon">mdi-lightning-bolt</v-icon>
-              </div>
+      <section class="hero-section">
+        <div class="hero-glow"></div>
+        <div class="fireworks-container">
+          <div class="firework" v-for="n in 8" :key="n" :style="{left: (n * 12) + '%', animationDelay: (n * 0.5) + 's'}"></div>
+        </div>
+        <v-container>
+          <div class="hero-content">
+            <div class="logo-container">
+              <img src="/foto perfil-Photoroom copy.png" alt="Mateus 3.0 Turbo" class="hero-logo" />
             </div>
-          </v-container>
-        </section>
-      </div>
+            <p class="hero-subtitle">Vem comemorar meus 30 anos comigo!</p>
+            <div class="hero-decorations">
+              <v-icon class="deco-icon">mdi-lightning-bolt</v-icon>
+              <v-icon class="deco-icon">mdi-flash</v-icon>
+              <v-icon class="deco-icon">mdi-lightning-bolt</v-icon>
+            </div>
+          </div>
+        </v-container>
+      </section>
 
       <section class="info-section">
         <v-container>
@@ -118,33 +108,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-
-const backgroundMusic = ref<HTMLAudioElement | null>(null);
-const isMusicPlaying = ref(false);
-
-const toggleMusic = () => {
-  if (backgroundMusic.value) {
-    if (isMusicPlaying.value) {
-      backgroundMusic.value.pause();
-      isMusicPlaying.value = false;
-    } else {
-      backgroundMusic.value.play();
-      isMusicPlaying.value = true;
-    }
-  }
-};
-
-onMounted(() => {
-  if (backgroundMusic.value) {
-    backgroundMusic.value.volume = 0.4;
-    backgroundMusic.value.play().then(() => {
-      isMusicPlaying.value = true;
-    }).catch(() => {
-      isMusicPlaying.value = false;
-    });
-  }
-});
 </script>
 
 <style scoped>
@@ -158,55 +121,18 @@ onMounted(() => {
   padding: 0;
 }
 
-.video-section {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-.background-audio {
-  display: none;
-}
-
-.music-control {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.6);
-  border: 2px solid #00d4ff;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
-}
-
-.music-control:hover {
-  background: rgba(0, 212, 255, 0.2);
-  transform: scale(1.1);
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
-}
-
 .background-video {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
   z-index: 0;
-  filter: brightness(0.9) contrast(1.1) saturate(1.2);
 }
 
 .video-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
